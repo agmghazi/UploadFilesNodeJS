@@ -1,16 +1,25 @@
+const { urlencoded } = require("express");
 const express = require("express");
 const app = express();
 
 var multer = require("multer");
 
+var uploads = "C:/inetpub/wwwroot/_Files";
 var myStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads");
-  },
+  destination: uploads,
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   },
 });
+
+// var myStorage = multer.diskStorage({
+// destination: function (req, file, cb) {
+// cb(null, uploads);
+// },
+// filename: function (req, file, cb) {
+// cb(null, file.originalname);
+// },
+// });
 
 var uploader = multer({ storage: myStorage });
 
