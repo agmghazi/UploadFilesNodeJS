@@ -21,7 +21,28 @@ var myStorage = multer.diskStorage({
 // },
 // });
 
-var uploader = multer({ storage: myStorage });
+// let fileFilter = function (req, file, cb) {
+//   var allowedMimes = ["image/jpeg", "image/pjpeg", "image/png"];
+//   if (allowedMimes.includes(file.mimetype)) {
+//     cb(null, true);
+//   } else {
+//     cb(
+//       {
+//         success: false,
+//         message: "Invalid file type. Only jpg, png image files are allowed.",
+//       },
+//       false
+//     );
+//   }
+// };
+
+var uploader = multer({
+  storage: myStorage,
+  limits: {
+    fileSize: 1000 * 1024 * 1024, //file size limited 27 mb
+  },
+  // fileFilter: fileFilter,
+});
 
 app.post("/uploadfile", uploader.single("myFile"), function (req, res, next) {
   const file = req.file;
