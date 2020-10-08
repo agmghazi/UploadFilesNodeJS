@@ -12,6 +12,10 @@ npm install
 node app.js
 ```
 
+```
+http://localhost:6090/uploadfile
+```
+
 ## Install Forever
 
 ```
